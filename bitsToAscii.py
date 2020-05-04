@@ -1,7 +1,6 @@
-#Creates an array of 7 bits, thus turning
-#8 bits into a bitArr
 import getBits
 import numpy
+from numbers import Number
 
 decimalConversion = [64, 32, 16, 8, 4, 2, 1]
 
@@ -33,8 +32,8 @@ def bitArrToDecimal(bitArr):
 def decimalToAscii(decimalForm):
     """This function takes in a Decimal number
     from decimalForm and only converts values for
-    numbers, letters, and special characters"""
-    if(decimalForm > 32 and decimalForm < 128):
+    numbers, letters, and special character s"""
+    if(isinstance(decimalForm, Number) and decimalForm > 32 and decimalForm < 127):
         asciiChar = chr(decimalForm)
         return asciiChar
 
@@ -45,10 +44,11 @@ def createAsciiStr(length):
     gerated from random bits to ascii and creates
     a string of those characters"""
     password = ""
-    while(len(password) < length):
-        character = decimalToAscii(bitArrToDecimal(bit2BitArr()))
-        if(character != None):
-            password = password + character
-    return password
+    if(isinstance(length,Number)):
+        while(len(password) < length):
+            character = decimalToAscii(bitArrToDecimal(bit2BitArr()))
+            if(character != None):
+                password = password + character
+        return password
     
 
